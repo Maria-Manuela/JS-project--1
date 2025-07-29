@@ -46,21 +46,24 @@ const game = () => {
     const guess = getPlayerGuess();
 
     if (guess === null) {
-      console.log("No valid guess entered. Game over.");
+      alert("No valid guess entered. Game over.");
       break;
     }
-
     const result = checkGuess(guess, correctNumber);
-    console.log(result);
+    const attemptsLeft = 10 - attempt;
+    //alert(result);
+    //console.log(result);
 
-    if (result === "Correct") {
-      console.log(`Congrats! 🎉 You guessed it in ${attempt + 1} attempts!`);
+    if (result !== "Correct") {
+      alert(`${result}. You have ${attemptsLeft} attempts left.`);
+    } else {
+      alert(`Congrats! 🎉 You guessed it in ${attempt + 1} attempts!`);
       break;
     }
 
     if (attempt === 9) {
-      console.log("You’ve used all 10 attempts.");
-      console.log(`The correct number was ${correctNumber}`);
+      alert("You’ve used all 10 attempts.");
+      alert(`The correct number was ${correctNumber}`);
     }
   }
 };
