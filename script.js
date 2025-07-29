@@ -1,3 +1,4 @@
+console.log("Hello World!");
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 const correctNumber = generateRandomNumber();
 console.log("Secret number:", correctNumber);
@@ -64,11 +65,7 @@ const game = () => {
     if (attempt === 9) {
       alert("You’ve used all 10 attempts.");
       alert(`The correct number was ${correctNumber}`);
-    }
-  }
-};
 
-game();
 
 /* Create the random number and store it. 
 
@@ -87,3 +84,4 @@ Check the guess vs random number.
 If correct, break out.
 
 After the loop, print win/lose message and attempts used. */
+
