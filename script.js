@@ -1,50 +1,87 @@
 console.log("Hello World!");
-
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
-let correctlyGuessedNumber = generateRandomNumber();
-//
-//console.log(correctlyGuessedNumber);
-
-let userGuessedNumber;
+const correctNumber = generateRandomNumber();
+console.log("Secret number:", correctNumber);
 
 const getPlayerGuess = () => {
-  userGuessedNumber = prompt("Please,enter number between 01 and 100");
-  return parseInt(userGuessedNumber);
-};
-//getPlayerGuess();
-//console.log(userGuessedNumber);
+  for (let i = 0; i < 3; i++) {
+    const userInput = prompt(
+      "Let´s Play! Please,enter number between 01 and 100:"
+    );
+    const guess = parseInt(userInput, 10);
 
-const checkGuess = (correctlyGuessedNumber, userGuessedNumber) => {
-  //console.log(correctlyGuessedNumber, userGuessedNumber);
-  if (correctlyGuessedNumber === userGuessedNumber) {
-    console.log("Congrats! You guessed the number");
-  } else if (correctlyGuessedNumber < userGuessedNumber) {
-    console.log("Ups! You didn't guess the number. Try again");
-  } else if (correctlyGuessedNumber > userGuessedNumber) {
-    console.log("Ups! You didn't guess the number. Try again");
-  }
-};
-
-//checkGuess(correctlyGuessedNumber, userGuessedNumber);
-
-const game = () => {
-  generateRandomNumber();
-  console.log(correctlyGuessedNumber);
-
-  let totalAttempts = 10;
-
-  for (let attempt = 0; attempt < totalAttempts; attempt++) {
-    //console.log(correctlyGuessedNumber, userGuessedNumber);
-    if (correctlyGuessedNumber === userGuessedNumber) {
-      console.log("End of The Game! You won!");
-      break;
+    if (!isNaN(guess) && guess >= 1 && guess <= 100) {
+      return guess;
     } else {
-      getPlayerGuess();
-      console.log(userGuessedNumber);
-      //console.log(userGuessedNumber);
-      checkGuess(correctlyGuessedNumber, userGuessedNumber);
+      alert(
+        `Invalid input! You have ${
+          2 - i
+        } attempts left. Please enter a number between 1 and 100.`
+      );
     }
   }
+  alert("Sorry, you,ve used all 3 attempts");
+  return null;
 };
 
-game();
+/* // call it and log what it returns
+const playerGuess = getPlayerGuess();
+console.log("Player guess is:", playerGuess); */
+
+const checkGuess = (guess, correctNumber) => {
+  if (guess < correctNumber) {
+    return "Too low";
+  } else if (guess > correctNumber) {
+    return "Too high";
+  } else {
+    return "Correct";
+  }
+};
+
+/* console.log(checkGuess(10, 20)); // Too low
+console.log(checkGuess(33, 10)); // too high
+console.log(checkGuess(15, 15)); // Correct */
+
+const game = () => {
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const guess = getPlayerGuess();
+
+    if (guess === null) {
+      alert("No valid guess entered. Game over.");
+      break;
+    }
+    const result = checkGuess(guess, correctNumber);
+    const attemptsLeft = 10 - attempt;
+    //alert(result);
+    //console.log(result);
+
+    if (result !== "Correct") {
+      alert(`${result}. You have ${attemptsLeft} attempts left.`);
+    } else {
+      alert(`Congrats! 🎉 You guessed it in ${attempt + 1} attempts!`);
+      break;
+    }
+
+    if (attempt === 9) {
+      alert("You’ve used all 10 attempts.");
+      alert(`The correct number was ${correctNumber}`);
+
+
+/* Create the random number and store it. 
+
+Set attempts counter = 0.
+
+Use a loop (up to 10 times).
+
+Inside the loop:
+
+Get the player guess (use your input function).
+
+Increase attempts.
+
+Check the guess vs random number.
+
+If correct, break out.
+
+After the loop, print win/lose message and attempts used. */
+
