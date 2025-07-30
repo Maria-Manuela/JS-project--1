@@ -1,25 +1,15 @@
-console.log("Hello World!");
+alert("Hello World! I want to play a game with you. I will guess number between 1 and 100 and you will need to guess it. You will be given only 10 attempts to guess it. 🤖");
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 const correctNumber = generateRandomNumber();
 console.log("Secret number:", correctNumber);
 
-const resumeGame = () => {
-  
-  let choice = prompt ("Would you like to resume the game ?")
-  if (choice === "yes") {
-    game ();
-  }else {
-    alert ("Thank you! Byeeee! ")
-  }
-} 
-
 const getPlayerGuess = () => {
     while (true) {
     const userInput =  prompt(
-      "Let´s Play! Please,enter number between 01 and 100:"
+      "Let´s Play! Please,enter number between 1 and 100:"
     );  
     const guess = parseInt(userInput, 10);
-
+    console.log(guess);
     if (!isNaN(guess) && guess >= 1 && guess <= 100) {
       return guess;
     } else {
@@ -52,18 +42,11 @@ console.log(checkGuess(15, 15)); // Correct */
 
 const game = () => {
   
-  //while (!Number.isInteger (guess)) {
-    
-  
-  
-  
   for (let attempt = 0; attempt < 10; attempt++) {
     
     const guess = getPlayerGuess();
-   
     const result = checkGuess(guess, correctNumber);
     const attemptsLeft = 9 - attempt;
-  
 
     if (result !== "Correct") {
       alert(`${result}. You have ${attemptsLeft} attempts left.`);
@@ -73,20 +56,27 @@ const game = () => {
     }
 
     if (attempt === 9) {
-      alert("You’ve used all 10 attempts.");
+      alert("Game over. You’ve used all 10 attempts.");
       alert(`The correct number was ${correctNumber}`);
     }
   }
 
 }
     
-   
-    
-    
-  
-
-
 game ();
+
+const resumeGame = () => {
+  
+  let choice = prompt ("Would you like to resume the game ? 🤖")
+  if (choice === "yes") {
+    game ();
+  }else {
+    alert ("Thank you! Byeeee! 👋")
+  }
+} 
+
+resumeGame();
+
 
 
 
