@@ -3,25 +3,33 @@ const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
 const correctNumber = generateRandomNumber();
 console.log("Secret number:", correctNumber);
 
+const resumeGame = () => {
+  
+  let choice = prompt ("Would you like to resume the game ?")
+  if (choice === "yes") {
+    game ();
+  }else {
+    alert ("Thank you! Byeeee! ")
+  }
+} 
+
 const getPlayerGuess = () => {
-  for (let i = 0; i < 3; i++) {
-    const userInput = prompt(
+    while (true) {
+    const userInput =  prompt(
       "Let´s Play! Please,enter number between 01 and 100:"
-    );
+    );  
     const guess = parseInt(userInput, 10);
 
     if (!isNaN(guess) && guess >= 1 && guess <= 100) {
       return guess;
     } else {
+     
       alert(
-        `Invalid input! You have ${
-          2 - i
-        } attempts left. Please enter a number between 1 and 100.`
+        `Invalid input!  Please enter a number between 1 and 100.`
       );
     }
-  }
-  alert("Sorry, you,ve used all 3 attempts");
-  return null;
+    }
+ 
 };
 
 /* // call it and log what it returns
@@ -43,21 +51,23 @@ console.log(checkGuess(33, 10)); // too high
 console.log(checkGuess(15, 15)); // Correct */
 
 const game = () => {
+  
+  //while (!Number.isInteger (guess)) {
+    
+  
+  
+  
   for (let attempt = 0; attempt < 10; attempt++) {
+    
     const guess = getPlayerGuess();
-
-    if (guess === null) {
-      alert("No valid guess entered. Game over.");
-      break;
-    }
+   
     const result = checkGuess(guess, correctNumber);
-    const attemptsLeft = 10 - attempt;
-    //alert(result);
-    //console.log(result);
+    const attemptsLeft = 9 - attempt;
+  
 
     if (result !== "Correct") {
       alert(`${result}. You have ${attemptsLeft} attempts left.`);
-    } else {
+    } else if (guess === correctNumber){
       alert(`Congrats! 🎉 You guessed it in ${attempt + 1} attempts!`);
       break;
     }
@@ -65,6 +75,20 @@ const game = () => {
     if (attempt === 9) {
       alert("You’ve used all 10 attempts.");
       alert(`The correct number was ${correctNumber}`);
+    }
+  }
+
+}
+    
+   
+    
+    
+  
+
+
+game ();
+
+
 
 
 /* Create the random number and store it. 
