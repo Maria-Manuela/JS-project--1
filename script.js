@@ -1,7 +1,28 @@
+/*make number regenarate and clean up code */
+
+/* Create the random number and store it. 
+
+Set attempts counter = 0.
+
+Use a loop (up to 10 times).
+
+Inside the loop:
+
+Get the player guess (use your input function).
+
+Increase attempts.
+
+Check the guess vs random number.
+
+If correct, break out.
+
+After the loop, print win/lose message and attempts used. */
+
+
 alert("Hello World! I want to play a game with you. I will guess number between 1 and 100 and you will need to guess it. You will be given only 10 attempts to guess it. 🤖");
 const generateRandomNumber = () => Math.floor(Math.random() * 100) + 1;
-const correctNumber = generateRandomNumber();
-console.log("Secret number:", correctNumber);
+let correctNumber = generateRandomNumber();
+//console.log("Secret number:", correctNumber);
 
 const getPlayerGuess = () => {
     while (true) {
@@ -13,18 +34,12 @@ const getPlayerGuess = () => {
     if (!isNaN(guess) && guess >= 1 && guess <= 100) {
       return guess;
     } else {
-     
       alert(
         `Invalid input!  Please enter a number between 1 and 100.`
       );
     }
     }
- 
 };
-
-/* // call it and log what it returns
-const playerGuess = getPlayerGuess();
-console.log("Player guess is:", playerGuess); */
 
 const checkGuess = (guess, correctNumber) => {
   if (guess < correctNumber) {
@@ -35,10 +50,6 @@ const checkGuess = (guess, correctNumber) => {
     return "Correct";
   }
 };
-
-/* console.log(checkGuess(10, 20)); // Too low
-console.log(checkGuess(33, 10)); // too high
-console.log(checkGuess(15, 15)); // Correct */
 
 const game = () => {
   
@@ -60,42 +71,48 @@ const game = () => {
       alert(`The correct number was ${correctNumber}`);
     }
   }
-
 }
-    
-game ();
 
 const resumeGame = () => {
-  
-  let choice = prompt ("Would you like to resume the game ? 🤖")
-  if (choice === "yes") {
+  while (true){
+  let choice = prompt ("Would you like to resume the game ? Please, answer yes or no 🤖")
+  cleanChoice = choice?.toLocaleLowerCase();
+  if (cleanChoice === "yes") {
+    correctNumber = generateRandomNumber ();
     game ();
-  }else {
-    alert ("Thank you! Byeeee! 👋")
+  }else if (cleanChoice === "no"){
+    alert ("Thank you! Byeeee! 👋");
+    break;
+  }else if (choice === null) {
+    alert("Thank you! Byeeee! 👋")
+    break;
   }
+  else {
+    alert("Invalid Input! Please, eneter yes or no");
+  }
+}
 } 
 
-resumeGame();
+while (true) {
+  userChoice = prompt("Let's play ? Please, answer yes or no 🤖");
+  let cleanUserChoice = userChoice?.toLocaleLowerCase();
+if (userChoice === null) {
+  alert("Thank you! Byeeee 👋");
+  break;
+}
+else if (cleanUserChoice === "yes") {
+  game ();
+  resumeGame();
+  break;
+}else if (cleanUserChoice === "no"){
+  alert("Thank you! Byeeee 👋");
+  break;
+}else {
+  alert("Invalid Input! Please, eneter yes or no");
+}
+}
 
 
 
 
-
-/* Create the random number and store it. 
-
-Set attempts counter = 0.
-
-Use a loop (up to 10 times).
-
-Inside the loop:
-
-Get the player guess (use your input function).
-
-Increase attempts.
-
-Check the guess vs random number.
-
-If correct, break out.
-
-After the loop, print win/lose message and attempts used. */
 
