@@ -60,7 +60,7 @@ const game = () => {
     const attemptsLeft = 9 - attempt;
 
     if (result !== "Correct") {
-      alert(`${result}. You have ${attemptsLeft} attempts left.`);
+      alert(`${result}. Your number is: ${guess} You have ${attemptsLeft} attempts left.`);
     } else if (guess === correctNumber){
       alert(`Congrats! 🎉 You guessed it in ${attempt + 1} attempts!`);
       break;
@@ -76,7 +76,7 @@ const game = () => {
 const resumeGame = () => {
   while (true){
   let choice = prompt ("Would you like to resume the game ? Please, answer yes or no 🤖")
-  cleanChoice = choice?.toLocaleLowerCase();
+  cleanChoice = choice?.trim().toLocaleLowerCase();
   if (cleanChoice === "yes") {
     correctNumber = generateRandomNumber ();
     game ();
